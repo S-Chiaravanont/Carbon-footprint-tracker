@@ -26,6 +26,7 @@ function viewSwap(event) {
 var formAnswers = {};
 var $formElements = document.querySelector('form');
 $formElements.addEventListener('submit', formHandle);
+var defaultRangeValue = ['50', '50', '6', '150'];
 
 function formHandle(event) {
   event.preventDefault();
@@ -35,6 +36,9 @@ function formHandle(event) {
   formAnswers.entertain = Number($formElements.elements.entertain.value);
   formAnswers.shopping = Number($formElements.elements.shopping.value);
   $formElements.reset();
+  for (var i = 0; i < defaultRangeValue.length; i++) {
+    $rangeTextNodes[i].textContent = defaultRangeValue[i];
+  }
 }
 
 // Nav bar window interactive

@@ -18,6 +18,11 @@ p {
   font-size: 0.7rem;
 }
 
+label {
+  line-height: 2.5rem;
+  margin-left: 25%;
+}
+
 .footer > h4,
 h4 > a {
   color: white;
@@ -63,7 +68,7 @@ h4 > a {
 }
 
 .home {
-  font-size: 2rem;
+  font-size: 1.7rem;
   line-height: 3rem;
   padding-right: 5px;
 }
@@ -133,4 +138,22 @@ h4 > a {
   background-color: red;
   color: white;
   border-radius: 5px;
+}
+
+.span-miles {
+  margin: 0 1.8rem 0 2.7rem;
+}
+
+.span-dollar,
+.span-hr {
+  margin: 0 2.5rem 0 3.3rem;
+}
+
+.range-style {
+  width: 137px;
+  margin: 0 auto;
+}
+
+form img {
+  width: 90%;
 }

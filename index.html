@@ -29,7 +29,7 @@
   </header>
   <main>
     <!-- Home Page -->
-    <div data-view="home" id="homePage" class="">
+    <div data-view="home" id="homePage" class="dis-none">
       <div class="hero-img-container">
         <img src="https://www.nhm.ac.uk/content/dam/nhmwww/discover/svalbard/polar-bears-full-width.jpg" alt="" class="hero-img">
         <div class="text-center">
@@ -81,22 +81,77 @@
       </div>
     </div>
     <!-- Calculate Page -->
-    <div data-view="calculate" id="calculatePage" class="dis-none">
+    <div data-view="calculate" id="calculatePage" class="">
       <div class="container">
         <form class="row flex-wrap">
           <div class="column-full text-center">
-            <h3>SEE HOW YOUR DAILY ACTIVITES ACTUALLY CONTRIBUTE</h3>
+            <h2>SEE HOW YOUR DAILY ACTIVITES ACTUALLY CONTRIBUTE</h2>
           </div>
-          <div class="column-half"></div>
-          <div class="column-half"></div>
-          <div class="column-half"></div>
-          <div class="column-half"></div>
-          <div class="column-half"></div>
-          <div class="column-half"></div>
-          <div class="column-half"></div>
-          <div class="column-half"></div>
-          <div class="column-half"></div>
-          <div class="column-half"></div>
+          <div class="column-half">
+            <img src="https://media.istockphoto.com/id/511009470/vector/cartoon-cars-and-vehicles.jpg?s=1024x1024&w=is&k=20&c=dz4irqe-JE0cnWhfB83V4UeOCQ5MPlCVu37gh2vhyxw=" alt="">
+          </div>
+          <div class="column-half">
+            <h3 class="text-center">What car do you own?</h3>
+            <div>
+              <label for="sedan">
+                <input type="radio" name="vehicle-type" id="sedan">Sedan
+              </label> <br>
+              <label for="suv">
+                <input type="radio" name="vehicle-type" id="suv">SUV
+              </label> <br>
+              <label for="truck">
+                <input type="radio" name="vehicle-type" id="truck">Truck
+              </label> <br>
+              <label for="none">
+                <input type="radio" name="vehicle-type" id="none">None
+              </label>
+            </div>
+          </div>
+          <div class="column-half">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqPBJejkr5DZJSCmkQig33JOBhjE_9AowDow&usqp=CAU" alt="">
+          </div>
+          <div class="column-half">
+            <h3 class="text-center">Did you drive today?</h3>
+            <h4 class="text-center" id="driveCount">50</h4>
+            <div class="range-style">
+              <input type="range" id="drive" name="drive" min="0" max="100" value="50" step="10">
+              <p>0 <span class="span-miles">miles</span> 100+</p>
+            </div>
+          </div>
+          <div class="column-half">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9aEyqf2DuH68Z368F-T3A4x0ovveQof7f6g&usqp=CAU" alt="">
+          </div>
+          <div class="column-half">
+            <h3 class="text-center">How much money did you <br> spend on food today?</h3>
+            <h4 class="text-center" id="foodCount">50</h4>
+            <div class="range-style">
+              <input type="range" id="food" name="food" min="0" max="100" value="50" step="10">
+              <p>0 <span class="span-dollar">$</span> 100+</p>
+            </div>
+          </div>
+          <div class="column-half">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZPqgUIXlus2T-CxPdJG85uUs1pBPs5OImbQ&usqp=CAU" alt="">
+          </div>
+          <div class="column-half">
+            <h3 class="text-center">How many hours did you spend<br> time on computer/TV/Phone <br> today?</h3>
+            <h4 class="text-center" id="hrCount">6</h4>
+            <div class="range-style">
+              <input type="range" id="entertain" name="entertain" min="0" max="12" value="6" step="1">
+              <p>0 <span class="span-hr">hr</span> 12+</p>
+            </div>
+          </div>
+          <div class="column-half">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSry1Jddq4sbcOCmNREGNuNA7_Pgij0yLc7sA&usqp=CAU" alt="">
+          </div>
+          <div class="column-half">
+            <h3 class="text-center">How much money did you <br> spend shopping today?</h3>
+            <h4 class="text-center" id="shoppingCount">50</h4>
+            <div class="range-style">
+              <input type="range" id="shopping" name="shopping" min="0" max="300" value="150" step="10">
+              <p>0 <span class="span-dollar">$</span> 300+</p>
+            </div>
+
+          </div>
           <div class="column-full text-center">
             <button class="finish-button">FINISH</button>
           </div>

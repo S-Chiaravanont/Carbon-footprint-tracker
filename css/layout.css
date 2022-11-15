@@ -1,0 +1,44 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+}
+
+.column-full {
+  flex-basis: 100%;
+}
+
+.column-half {
+  flex-basis: 50%;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.column-full,
+.column-half {
+  padding: 0 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.navlink {
+  display: inline;
+}
+
+.dis-none {
+  display: none;
+}
+
+@media screen and (max-width: 500px) {
+  .column-half {
+    flex-basis: 100%;
+  }
+
+  .navlink {
+    display: none;
+  }
+}

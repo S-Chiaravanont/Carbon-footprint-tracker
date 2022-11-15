@@ -5,14 +5,110 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AJAX Project</title>
   <link rel="icon" href="images/favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <header>
+    <!-- NAVBAR -->
+    <div class="navbar-bg">
+      <div class="navbar">
+        <a href="#" data-view="home" class="home">CO2 Emissions</a>
+        <div class="navlink">
+          <a href="#" data-view="calculate">Calculate</a>
+        </div>
+        <div id="menu">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+      </div>
+    </div>
   </header>
   <main>
+    <!-- Home Page -->
+    <div data-view="home" id="homePage" class="">
+      <div class="hero-img-container">
+        <img src="https://www.nhm.ac.uk/content/dam/nhmwww/discover/svalbard/polar-bears-full-width.jpg" alt="" class="hero-img">
+        <div class="text-center">
+          <h3 class="carbon-header">WHAT IS A <br> CARBON FOOTPRINT?</h3>
+          <h3 class="learn-more-header">LEARN MORE</h3>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row flex-wrap">
+          <div class="column-half">
+            <h5 class="text-cont-wd-65">A carbon footprint is a simple way to express that impact. The “size” of your carbon footprint depends on multiple
+            factors. The primary one is the amount of greenhouse gas emissions released into the atmosphere by a given activity.</h5>
+          </div>
+          <div class="column-half">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJ1UjIvpe5GCEP3O3i180PmlxDhQD1MBb0nw&usqp=CAU" alt="">
+          </div>
+          <div class="column-half">
+            <img src="https://skepticalscience.com//pics/emm1.jpg" alt="">
+          </div>
+          <div class="column-half">
+            <p>
+              People, products and entire industries have carbon footprints. Your personal footprint includes emissions from a variety of sources — your daily commute, the food you eat, the clothes you buy, everything you throw away ... and more. The larger your footprint, the heavier the strain on the environment.
+            </p>
+            <p>
+              To halt climate breakdown and avoid its worst impacts, we need to do two things: shift to a low-carbon economy and protect our best natural allies in the fight against climate change — forests, grasslands, mangroves and tidal marshes, which stash away large quantities of carbon.
+            </p>
+            <p>
+              Drastically cutting greenhouse gas emissions will require, everyone — from individuals to industries to countries — to vastly reduce their carbon footprint. Here’s the information and practical steps you’ll need to get started.
+            </p>
+          </div>
+          <div class="column-full">
+            <hr>
+          </div>
+          <div class="column-half text-center">
+            <h3>Calculate Your Carbon Footprint</h3>
+            <div class="text-cont-wd-65">
+              <h5>Take the mini quiz now and find out how much carbon emission your daily activities contribute.</h5>
+            </div>
+          </div>
+          <div class="column-half">
+            <img src="https://img.freepik.com/free-vector/footprint-infographics_23-2148672727.jpg?w=2000" alt="" class="footprint-img">
+          </div>
+          <div class="column-full text-center">
+            <button id="calculate" class="calculate-button">
+              CALCULATE
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Calculate Page -->
+    <div data-view="calculate" id="calculatePage" class="dis-none">
+      <div class="container">
+        <form class="row flex-wrap">
+          <div class="column-full text-center">
+            <h3>SEE HOW YOUR DAILY ACTIVITES ACTUALLY CONTRIBUTE</h3>
+          </div>
+          <div class="column-half"></div>
+          <div class="column-half"></div>
+          <div class="column-half"></div>
+          <div class="column-half"></div>
+          <div class="column-half"></div>
+          <div class="column-half"></div>
+          <div class="column-half"></div>
+          <div class="column-half"></div>
+          <div class="column-half"></div>
+          <div class="column-half"></div>
+          <div class="column-full text-center">
+            <button class="finish-button">FINISH</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- Footer -->
+    <footer class="footer-bg">
+      <div class="footer">
+        <h4 class="text-center">Powered by: <a href="https://www.climatiq.io/">Climatiq</a></h4>
+      </div>
+    </footer>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>

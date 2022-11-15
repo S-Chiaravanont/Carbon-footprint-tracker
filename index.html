@@ -17,19 +17,24 @@
     <!-- NAVBAR -->
     <div class="navbar-bg">
       <div class="navbar">
-        <a href="#" data-view="home" class="home">CO2 Emissions</a>
+        <a href="#" data-view="home" class="home" id="home-Nav">CO2 Emissions</a>
         <div class="navlink">
-          <a href="#" data-view="calculate">Calculate</a>
+          <a href="#" data-view="calculate" id="cal-Nav">Calculate</a>
         </div>
-        <div id="menu">
+        <div id="menu-icon">
           <i class="fa-solid fa-bars"></i>
+        </div>
+        <div class="dis-none" id="menu-window">
+          <div class="menu-window">
+            <a href="#" data-view="calculate" class="cal-menu" id="cal-menu">Calculate</a>
+          </div>
         </div>
       </div>
     </div>
   </header>
   <main>
     <!-- Home Page -->
-    <div data-view="home" id="homePage" class="dis-none">
+    <div data-view="home" id="homePage" class="">
       <div class="hero-img-container">
         <img src="https://www.nhm.ac.uk/content/dam/nhmwww/discover/svalbard/polar-bears-full-width.jpg" alt="" class="hero-img">
         <div class="text-center">
@@ -73,7 +78,7 @@
             <img src="https://img.freepik.com/free-vector/footprint-infographics_23-2148672727.jpg?w=2000" alt="" class="footprint-img">
           </div>
           <div class="column-full text-center">
-            <button id="calculate" class="calculate-button">
+            <button id="calculate-butt" class="calculate-button" data-view="calculate">
               CALCULATE
             </button>
           </div>
@@ -81,7 +86,7 @@
       </div>
     </div>
     <!-- Calculate Page -->
-    <div data-view="calculate" id="calculatePage" class="">
+    <div data-view="calculate" id="calculatePage" class="dis-none">
       <div class="container">
         <form class="row flex-wrap">
           <div class="column-full text-center">
@@ -94,16 +99,16 @@
             <h3 class="text-center">What car do you own?</h3>
             <div>
               <label for="sedan">
-                <input type="radio" name="vehicle-type" id="sedan">Sedan
+                <input type="radio" name="vehicleType" id="sedan" value="sedan">Sedan
               </label> <br>
               <label for="suv">
-                <input type="radio" name="vehicle-type" id="suv">SUV
+                <input type="radio" name="vehicleType" id="suv" value="suv">SUV
               </label> <br>
               <label for="truck">
-                <input type="radio" name="vehicle-type" id="truck">Truck
+                <input type="radio" name="vehicleType" id="truck" value="truck">Truck
               </label> <br>
               <label for="none">
-                <input type="radio" name="vehicle-type" id="none">None
+                <input type="radio" name="vehicleType" id="none" value="none">None
               </label>
             </div>
           </div>
@@ -112,9 +117,9 @@
           </div>
           <div class="column-half">
             <h3 class="text-center">Did you drive today?</h3>
-            <h4 class="text-center" id="driveCount">50</h4>
+            <h4 class="text-center" id="driveCount" data-range="drive">50</h4>
             <div class="range-style">
-              <input type="range" id="drive" name="drive" min="0" max="100" value="50" step="10">
+              <input type="range" id="drive" name="drive" min="0" max="100" value="50" step="10" data-range="drive">
               <p>0 <span class="span-miles">miles</span> 100+</p>
             </div>
           </div>
@@ -123,9 +128,9 @@
           </div>
           <div class="column-half">
             <h3 class="text-center">How much money did you <br> spend on food today?</h3>
-            <h4 class="text-center" id="foodCount">50</h4>
+            <h4 class="text-center" id="foodCount" data-range="food">50</h4>
             <div class="range-style">
-              <input type="range" id="food" name="food" min="0" max="100" value="50" step="10">
+              <input type="range" id="food" name="food" min="0" max="100" value="50" step="10" data-range="food">
               <p>0 <span class="span-dollar">$</span> 100+</p>
             </div>
           </div>
@@ -134,9 +139,9 @@
           </div>
           <div class="column-half">
             <h3 class="text-center">How many hours did you spend<br> time on computer/TV/Phone <br> today?</h3>
-            <h4 class="text-center" id="hrCount">6</h4>
+            <h4 class="text-center" id="hrCount" data-range="entertain">6</h4>
             <div class="range-style">
-              <input type="range" id="entertain" name="entertain" min="0" max="12" value="6" step="1">
+              <input type="range" id="entertain" name="entertain" min="0" max="12" value="6" step="1" data-range="entertain">
               <p>0 <span class="span-hr">hr</span> 12+</p>
             </div>
           </div>
@@ -145,15 +150,15 @@
           </div>
           <div class="column-half">
             <h3 class="text-center">How much money did you <br> spend shopping today?</h3>
-            <h4 class="text-center" id="shoppingCount">50</h4>
+            <h4 class="text-center" id="shoppingCount" data-range="shopping">150</h4>
             <div class="range-style">
-              <input type="range" id="shopping" name="shopping" min="0" max="300" value="150" step="10">
+              <input type="range" id="shopping" name="shopping" min="0" max="300" value="150" step="10" data-range="shopping">
               <p>0 <span class="span-dollar">$</span> 300+</p>
             </div>
 
           </div>
           <div class="column-full text-center">
-            <button class="finish-button">FINISH</button>
+            <button class="finish-button" data-view="home" id="finish-button">FINISH</button>
           </div>
         </form>
       </div>

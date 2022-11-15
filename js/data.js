@@ -1,1 +1,2 @@
 /* exported data */
+var data = [];

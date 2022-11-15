@@ -49,7 +49,7 @@ h4 > a {
   padding-right: 10px;
 }
 
-#menu {
+#menu-icon {
   position: absolute;
   right: 0;
   top: 50%;
@@ -60,10 +60,15 @@ h4 > a {
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  transition: background-color 0.3s;
 }
 
-#menu:hover {
-  background-color: blue;
+#menu-icon:hover {
+  background-color: rgba(255, 255, 255, 0.42);
+  color: rgb(52, 58, 64);
+  border-radius: 5px;
   cursor: pointer;
 }
 
@@ -140,6 +145,10 @@ h4 > a {
   border-radius: 5px;
 }
 
+.finish-button:hover {
+  cursor: pointer;
+}
+
 .span-miles {
   margin: 0 1.8rem 0 2.7rem;
 }
@@ -156,4 +165,22 @@ h4 > a {
 
 form img {
   width: 90%;
+}
+
+.menu-window {
+  position: absolute;
+  width: 200px;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.832);
+  right: 0;
+  border-radius: 0 0 10px 10px;
+  z-index: 2;
+}
+
+.cal-menu {
+  text-decoration: none;
+  color: white;
+  font-weight: 300;
+  margin: 3.5rem;
+  line-height: 2.3rem;
 }

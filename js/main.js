@@ -23,13 +23,13 @@ function viewSwap(event) {
 }
 
 // form control
-var formAnswers = {};
 var $formElements = document.querySelector('form');
 $formElements.addEventListener('submit', formHandle);
 var defaultRangeValue = ['50', '50', '6', '150'];
 
 function formHandle(event) {
   event.preventDefault();
+  var formAnswers = {};
   formAnswers.vehicle = $formElements.elements.vehicleType.value;
   formAnswers.distance = Number($formElements.elements.drive.value);
   formAnswers.food = Number($formElements.elements.food.value);

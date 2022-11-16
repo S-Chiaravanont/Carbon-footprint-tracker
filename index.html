@@ -34,7 +34,7 @@
   </header>
   <main>
     <!-- Home Page -->
-    <div data-view="home" id="homePage" class="dis-none">
+    <div data-view="home" id="homePage" class="">
       <div class="hero-img-container">
         <div class="text-center">
           <h3 class="carbon-header">WHAT IS A CARBON FOOTPRINT?</h3>
@@ -98,7 +98,7 @@
             <h3 class="text-center">What car do you own?</h3>
             <div>
               <label for="sedan">
-                <input type="radio" name="vehicleType" id="sedan" value="sedan">Sedan
+                <input type="radio" name="vehicleType" id="sedan" value="sedan" required>Sedan
               </label> <br>
               <label for="suv">
                 <input type="radio" name="vehicleType" id="suv" value="suv">SUV
@@ -154,16 +154,15 @@
               <input type="range" id="shopping" name="shopping" min="0" max="300" value="150" step="10" data-range="shopping">
               <p>0 <span class="span-dollar">$</span> 300+</p>
             </div>
-
           </div>
           <div class="column-full text-center">
-            <button class="finish-button" data-view="home" id="finish-button">FINISH</button>
+            <button class="finish-button" data-view="result" id="finish-button" name="finishButton">FINISH</button>
           </div>
         </form>
       </div>
     </div>
     <!-- Result Page -->
-    <div data-view="result" id="resultPage" class="">
+    <div data-view="result" id="resultPage" class="dis-none">
       <div class="container">
         <div class="row flex-wrap">
           <div class="column-full text-center">

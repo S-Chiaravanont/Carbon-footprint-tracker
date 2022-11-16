@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/charts.css/dist/charts.min.css">
 </head>
 <body>
   <header>
@@ -32,138 +33,187 @@
       </div>
     </div>
   </header>
-  <main>
-    <!-- Home Page -->
-    <div data-view="home" id="homePage" class="">
-      <div class="hero-img-container">
-        <div class="text-center">
-          <h3 class="carbon-header">WHAT IS A CARBON FOOTPRINT?</h3>
-          <h3 class="learn-more-header">LEARN MORE <br><i class="fa-solid fa-caret-down"></i></h3>
-        </div>
-      </div>
-      <div class="container">
-        <div class="row flex-wrap">
-          <div class="column-half">
-            <h5 class="text-cont-wd-65">A carbon footprint is a simple way to express that impact. The “size” of your carbon footprint depends on multiple
-            factors. The primary one is the amount of greenhouse gas emissions released into the atmosphere by a given activity.</h5>
-          </div>
-          <div class="column-half">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJ1UjIvpe5GCEP3O3i180PmlxDhQD1MBb0nw&usqp=CAU" alt="">
-          </div>
-          <div class="column-half">
-            <img src="https://skepticalscience.com//pics/emm1.jpg" alt="">
-          </div>
-          <div class="column-half">
-            <p>
-              People, products and entire industries have carbon footprints. Your personal footprint includes emissions from a variety of sources — your daily commute, the food you eat, the clothes you buy, everything you throw away ... and more. The larger your footprint, the heavier the strain on the environment.
-            </p>
-            <p>
-              To halt climate breakdown and avoid its worst impacts, we need to do two things: shift to a low-carbon economy and protect our best natural allies in the fight against climate change — forests, grasslands, mangroves and tidal marshes, which stash away large quantities of carbon.
-            </p>
-            <p>
-              Drastically cutting greenhouse gas emissions will require, everyone — from individuals to industries to countries — to vastly reduce their carbon footprint. Here’s the information and practical steps you’ll need to get started.
-            </p>
-          </div>
-          <div class="column-full">
-            <hr>
-          </div>
-          <div class="column-half text-center">
-            <h3>Calculate Your Carbon Footprint</h3>
-            <div class="text-cont-wd-65">
-              <h5>Take the mini quiz now and find out how much carbon emission your daily activities contribute.</h5>
-            </div>
-          </div>
-          <div class="column-half">
-            <img src="https://img.freepik.com/free-vector/footprint-infographics_23-2148672727.jpg?w=2000" alt="" class="footprint-img">
-          </div>
-          <div class="column-full text-center">
-            <button id="calculate-butt" class="calculate-button" data-view="calculate">
-              CALCULATE
-            </button>
+  <main class="wrapper">
+    <div class="page-body">
+      <!-- Home Page -->
+      <div data-view="home" id="homePage" class="">
+        <div class="hero-img-container">
+          <div class="text-center">
+            <h3 class="carbon-header">WHAT IS A CARBON FOOTPRINT?</h3>
+            <h3 class="learn-more-header">LEARN MORE <br><i class="fa-solid fa-caret-down"></i></h3>
           </div>
         </div>
+        <div class="container">
+          <div class="row flex-wrap">
+            <div class="column-half">
+              <h5 class="text-cont-wd-65">A carbon footprint is a simple way to express that impact. The “size” of your carbon footprint depends on multiple
+              factors. The primary one is the amount of greenhouse gas emissions released into the atmosphere by a given activity.</h5>
+            </div>
+            <div class="column-half">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJ1UjIvpe5GCEP3O3i180PmlxDhQD1MBb0nw&usqp=CAU" alt="">
+            </div>
+            <div class="column-half">
+              <img src="https://skepticalscience.com//pics/emm1.jpg" alt="">
+            </div>
+            <div class="column-half">
+              <p>
+                People, products and entire industries have carbon footprints. Your personal footprint includes emissions from a variety of sources — your daily commute, the food you eat, the clothes you buy, everything you throw away ... and more. The larger your footprint, the heavier the strain on the environment.
+              </p>
+              <p>
+                To halt climate breakdown and avoid its worst impacts, we need to do two things: shift to a low-carbon economy and protect our best natural allies in the fight against climate change — forests, grasslands, mangroves and tidal marshes, which stash away large quantities of carbon.
+              </p>
+              <p>
+                Drastically cutting greenhouse gas emissions will require, everyone — from individuals to industries to countries — to vastly reduce their carbon footprint. Here’s the information and practical steps you’ll need to get started.
+              </p>
+            </div>
+            <div class="column-full">
+              <hr>
+            </div>
+            <div class="column-half text-center">
+              <h3>Calculate Your Carbon Footprint</h3>
+              <div class="text-cont-wd-65">
+                <h5>Take the mini quiz now and find out how much carbon emission your daily activities contribute.</h5>
+              </div>
+            </div>
+            <div class="column-half">
+              <img src="https://img.freepik.com/free-vector/footprint-infographics_23-2148672727.jpg?w=2000" alt="" class="footprint-img">
+            </div>
+            <div class="column-full text-center">
+              <button id="calculate-butt" class="calculate-button" data-view="calculate">
+                CALCULATE
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <!-- Calculate Page -->
-    <div data-view="calculate" id="calculatePage" class="dis-none">
-      <div class="container">
-        <form class="row flex-wrap">
-          <div class="column-full text-center">
-            <h2>SEE HOW YOUR DAILY ACTIVITES ACTUALLY CONTRIBUTE</h2>
-          </div>
-          <div class="column-half">
-            <img src="https://media.istockphoto.com/id/511009470/vector/cartoon-cars-and-vehicles.jpg?s=1024x1024&w=is&k=20&c=dz4irqe-JE0cnWhfB83V4UeOCQ5MPlCVu37gh2vhyxw=" alt="">
-          </div>
-          <div class="column-half">
-            <h3 class="text-center">What car do you own?</h3>
-            <div>
-              <label for="sedan">
-                <input type="radio" name="vehicleType" id="sedan" value="sedan">Sedan
-              </label> <br>
-              <label for="suv">
-                <input type="radio" name="vehicleType" id="suv" value="suv">SUV
-              </label> <br>
-              <label for="truck">
-                <input type="radio" name="vehicleType" id="truck" value="truck">Truck
-              </label> <br>
-              <label for="none">
-                <input type="radio" name="vehicleType" id="none" value="none">None
-              </label>
+      <!-- Calculate Page -->
+      <div data-view="calculate" id="calculatePage" class="dis-none">
+        <div class="container">
+          <form class="row flex-wrap">
+            <div class="column-full text-center">
+              <h2>SEE HOW YOUR DAILY ACTIVITES ACTUALLY CONTRIBUTE</h2>
+            </div>
+            <div class="column-half">
+              <img src="https://media.istockphoto.com/id/511009470/vector/cartoon-cars-and-vehicles.jpg?s=1024x1024&w=is&k=20&c=dz4irqe-JE0cnWhfB83V4UeOCQ5MPlCVu37gh2vhyxw=" alt="">
+            </div>
+            <div class="column-half">
+              <h3 class="text-center">What car do you own?</h3>
+              <div>
+                <label for="sedan">
+                  <input type="radio" name="vehicleType" id="sedan" value="sedan" required>Sedan
+                </label> <br>
+                <label for="suv">
+                  <input type="radio" name="vehicleType" id="suv" value="suv">SUV
+                </label> <br>
+                <label for="truck">
+                  <input type="radio" name="vehicleType" id="truck" value="truck">Truck
+                </label> <br>
+                <label for="none">
+                  <input type="radio" name="vehicleType" id="none" value="motorcycle">None
+                </label>
+              </div>
+            </div>
+            <div class="column-half">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqPBJejkr5DZJSCmkQig33JOBhjE_9AowDow&usqp=CAU" alt="">
+            </div>
+            <div class="column-half">
+              <h3 class="text-center">Did you drive today?</h3>
+              <h4 class="text-center" id="driveCount" data-range="drive">50</h4>
+              <div class="range-style">
+                <input type="range" id="drive" name="drive" min="0" max="100" value="50" step="10" data-range="drive">
+                <p>0 <span class="span-miles">miles</span> 100+</p>
+              </div>
+            </div>
+            <div class="column-half">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9aEyqf2DuH68Z368F-T3A4x0ovveQof7f6g&usqp=CAU" alt="">
+            </div>
+            <div class="column-half">
+              <h3 class="text-center">How much money did you <br> spend on food today?</h3>
+              <h4 class="text-center" id="foodCount" data-range="food">50</h4>
+              <div class="range-style">
+                <input type="range" id="food" name="food" min="0" max="100" value="50" step="10" data-range="food">
+                <p>0 <span class="span-dollar">$</span> 100+</p>
+              </div>
+            </div>
+            <div class="column-half">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZPqgUIXlus2T-CxPdJG85uUs1pBPs5OImbQ&usqp=CAU" alt="">
+            </div>
+            <div class="column-half">
+              <h3 class="text-center">How many hours did you spend<br> time on computer/TV/Phone <br> today?</h3>
+              <h4 class="text-center" id="hrCount" data-range="entertain">6</h4>
+              <div class="range-style">
+                <input type="range" id="entertain" name="entertain" min="0" max="12" value="6" step="1" data-range="entertain">
+                <p>0 <span class="span-hr">hr</span> 12+</p>
+              </div>
+            </div>
+            <div class="column-half">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSry1Jddq4sbcOCmNREGNuNA7_Pgij0yLc7sA&usqp=CAU" alt="">
+            </div>
+            <div class="column-half">
+              <h3 class="text-center">How much money did you <br> spend shopping today?</h3>
+              <h4 class="text-center" id="shoppingCount" data-range="shopping">150</h4>
+              <div class="range-style">
+                <input type="range" id="shopping" name="shopping" min="0" max="300" value="150" step="10" data-range="shopping">
+                <p>0 <span class="span-dollar">$</span> 300+</p>
+              </div>
+            </div>
+            <div class="column-full text-center">
+              <button class="finish-button" data-view="result" id="finish-button" name="finishButton">FINISH</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- Result Page -->
+      <div data-view="result" id="resultPage" class="dis-none">
+        <div class="container">
+          <div class="row flex-wrap">
+            <div class="column-full text-center">
+              <h2 class="result-date" id="resultDate">Date</h2>
+            </div>
+            <div class="column-half text-center">
+              <h3 class="">Result:</h3>
+              <div class="co2">
+                <span id="CO2ResultText">0</span>
+                <span>Kg CO2</span>
+              </div>
+              <div class="co2e">
+                <span id="CO2eResultText">0</span>
+                <span>Kg CO2e</span>
+              </div>
+              <div class="ch4">
+                <span id="CH4ResultText">0</span>
+                <span>Kg CH4</span>
+              </div>
+              <div class="n2o">
+                <span id="N2OResultText">0</span>
+                <span>Kg N2O</span>
+              </div>
+            </div>
+            <!-- graph -->
+            <div class="column-half">
+              <table class="charts-css column show-4-secondary-axes show-labels show-primary-axis data-spacing-4" id="my-chart">
+                <caption> Carbon Footprint </caption>
+                <tr><th scope="row"> CO2 </th><td id="resultGraphCO2" style="--size: calc( 20/30 );"> 16 </td></tr>
+                <tr>
+                  <th scope="row"> CO2e </th>
+                  <td id="resultGraphCO2e" style="--size: calc( 25/30 );"> 25 </td>
+                </tr>
+                <tr>
+                  <th scope="row"> CH4 </th>
+                  <td id="resultGraphCH4" style="--size: calc( 3/30 );"> 0.002 </td>
+                </tr>
+                <tr>
+                  <th scope="row"> N2O </th>
+                  <td id="resultGraphN2O" style="--size: calc( 4/30 );"> 0.005 </td>
+                </tr>
+              </table>
             </div>
           </div>
-          <div class="column-half">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqPBJejkr5DZJSCmkQig33JOBhjE_9AowDow&usqp=CAU" alt="">
-          </div>
-          <div class="column-half">
-            <h3 class="text-center">Did you drive today?</h3>
-            <h4 class="text-center" id="driveCount" data-range="drive">50</h4>
-            <div class="range-style">
-              <input type="range" id="drive" name="drive" min="0" max="100" value="50" step="10" data-range="drive">
-              <p>0 <span class="span-miles">miles</span> 100+</p>
-            </div>
-          </div>
-          <div class="column-half">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9aEyqf2DuH68Z368F-T3A4x0ovveQof7f6g&usqp=CAU" alt="">
-          </div>
-          <div class="column-half">
-            <h3 class="text-center">How much money did you <br> spend on food today?</h3>
-            <h4 class="text-center" id="foodCount" data-range="food">50</h4>
-            <div class="range-style">
-              <input type="range" id="food" name="food" min="0" max="100" value="50" step="10" data-range="food">
-              <p>0 <span class="span-dollar">$</span> 100+</p>
-            </div>
-          </div>
-          <div class="column-half">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZPqgUIXlus2T-CxPdJG85uUs1pBPs5OImbQ&usqp=CAU" alt="">
-          </div>
-          <div class="column-half">
-            <h3 class="text-center">How many hours did you spend<br> time on computer/TV/Phone <br> today?</h3>
-            <h4 class="text-center" id="hrCount" data-range="entertain">6</h4>
-            <div class="range-style">
-              <input type="range" id="entertain" name="entertain" min="0" max="12" value="6" step="1" data-range="entertain">
-              <p>0 <span class="span-hr">hr</span> 12+</p>
-            </div>
-          </div>
-          <div class="column-half">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSry1Jddq4sbcOCmNREGNuNA7_Pgij0yLc7sA&usqp=CAU" alt="">
-          </div>
-          <div class="column-half">
-            <h3 class="text-center">How much money did you <br> spend shopping today?</h3>
-            <h4 class="text-center" id="shoppingCount" data-range="shopping">150</h4>
-            <div class="range-style">
-              <input type="range" id="shopping" name="shopping" min="0" max="300" value="150" step="10" data-range="shopping">
-              <p>0 <span class="span-dollar">$</span> 300+</p>
-            </div>
-
-          </div>
-          <div class="column-full text-center">
-            <button class="finish-button" data-view="home" id="finish-button">FINISH</button>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
     <!-- Footer -->
-    <footer class="footer-bg">
+    <footer class="footer-bg page-footer">
       <div class="footer">
         <h4 class="text-center">Powered by: <a href="https://www.climatiq.io/">Climatiq</a></h4>
       </div>

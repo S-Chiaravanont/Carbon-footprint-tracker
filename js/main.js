@@ -221,7 +221,7 @@ function updateResultPage(obj) {
 
 function updateHistoryLineGraph() {
   var $lineGraph = document.querySelector('#my-chart-line > tbody');
-  $lineGraph.innerHTML = '';
+  $lineGraph.replaceChildren();
   var startValue = [0.0, 0.0, 0.0, 0.0];
   for (var i = 0; i < data.footprints.length; i++) {
     var newTR = renderSingleTRLineGraph(data.footprints[i], startValue);
@@ -282,7 +282,7 @@ function renderSingleTRLineGraph(obj, startValues) {
 
 function updateHistoryTable() {
   var $hisTableBody = document.querySelector('#history-table-body');
-  $hisTableBody.innerHTML = '';
+  $hisTableBody.replaceChildren();
   for (var i = 0; i < data.footprints.length; i++) {
     var newTR = renderSingleTRHisTable(data.footprints[i]);
     $hisTableBody.appendChild(newTR);

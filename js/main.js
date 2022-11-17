@@ -5,11 +5,15 @@ var $homeNav = document.querySelector('#home-Nav');
 var $calNav = document.querySelector('#cal-Nav');
 var $calButton = document.querySelector('#calculate-butt');
 var $calMenu = document.querySelector('#cal-menu');
+var $hisNav = document.querySelector('#his-Nav');
+var $hisMenu = document.querySelector('#his-menu');
 
 $homeNav.addEventListener('click', viewSwap);
 $calNav.addEventListener('click', viewSwap);
 $calButton.addEventListener('click', viewSwap);
 $calMenu.addEventListener('click', viewSwap);
+$hisNav.addEventListener('click', viewSwap);
+$hisMenu.addEventListener('click', viewSwap);
 
 function viewSwap(event) {
   if (typeof event === 'object') {
@@ -30,6 +34,7 @@ function viewSwap(event) {
     }
   }
   $menuWindow.setAttribute('class', 'dis-none');
+  updateHistoryLineGraph();
 }
 
 // form control
@@ -193,7 +198,7 @@ function parseAPIData(dataAPI) {
 
 function updateResultPage(obj) {
   var $resultGraphCO2e = document.querySelector('#resultGraphCO2e');
-  var $resultGraphCO2 = document.querySelector('#resultGraphCO2e');
+  var $resultGraphCO2 = document.querySelector('#resultGraphCO2');
   var $resultGraphCH4 = document.querySelector('#resultGraphCH4');
   var $resultGraphN2O = document.querySelector('#resultGraphN2O');
   var $resultTextCO2e = document.querySelector('#CO2eResultText');
@@ -211,4 +216,65 @@ function updateResultPage(obj) {
   $resultTextCO2e.textContent = Number.parseFloat(obj.total.co2e.toPrecision(3));
   $resultTextN2O.textContent = Number.parseFloat(obj.total.n2o.toPrecision(3));
   $resultDate.textContent = obj.date;
+}
+
+function updateHistoryLineGraph() {
+  var $lineGraph = document.querySelector('#my-chart-line > tbody');
+  $lineGraph.innerHTML = '';
+  var startValue = [0.0, 0.0, 0.0, 0.0];
+  for (var i = 0; i < data.footprints.length; i++) {
+    var newTR = renderSingleTRLineGraph(data.footprints[i], startValue);
+    $lineGraph.appendChild(newTR[0]);
+    startValue[0] = newTR[1][0];
+    startValue[1] = newTR[1][1];
+    startValue[2] = newTR[1][2];
+    startValue[3] = newTR[1][3];
+  }
+}
+
+function renderSingleTRLineGraph(obj, startValues) {
+  var returnValue = [];
+  // Max condition:
+  var CO2Max = 150;
+  var CO2eMax = 94.5;
+  var CH4Max = 0.0188;
+  var N2OMax = 0.00348;
+  var endValues = [
+    (Number.parseFloat(obj.total.co2) / CO2Max).toPrecision(2),
+    (Number.parseFloat(obj.total.co2e) / CO2eMax).toPrecision(2),
+    (Number.parseFloat(obj.total.ch4) / CH4Max).toPrecision(2),
+    (Number.parseFloat(obj.total.n2o) / N2OMax).toPrecision(2)
+  ];
+  // style="--start: 0.0; --size: 0.4"
+  var $tdCO2 = document.createElement('td');
+  $tdCO2.setAttribute('style', '--start: ' + String(startValues[0]) + '; --size: ' + String(endValues[0]));
+  var $spanCO2 = document.createElement('span');
+  $spanCO2.className = 'data';
+  $tdCO2.appendChild($spanCO2);
+  var $tdCO2e = document.createElement('td');
+  $tdCO2e.setAttribute('style', '--start: ' + String(startValues[1]) + '; --size: ' + String(endValues[1]));
+  var $spanCO2e = document.createElement('span');
+  $spanCO2e.className = 'data';
+  $tdCO2e.appendChild($spanCO2e);
+  var $tdCH4 = document.createElement('td');
+  $tdCH4.setAttribute('style', '--start: ' + String(startValues[2]) + '; --size: ' + String(endValues[2]));
+  var $spanCH4 = document.createElement('span');
+  $spanCH4.className = 'data';
+  $tdCH4.appendChild($spanCH4);
+  var $tdN2O = document.createElement('td');
+  $tdN2O.setAttribute('style', '--start: ' + String(startValues[3]) + '; --size: ' + String(endValues[3]));
+  var $spanN2O = document.createElement('span');
+  $spanN2O.className = 'data';
+  $tdN2O.appendChild($spanN2O);
+  var $trLine = document.createElement('tr');
+  $spanCO2.textContent = Number.parseFloat(obj.total.co2.toPrecision(2));
+  $spanCO2e.textContent = Number.parseFloat(obj.total.co2e.toPrecision(2));
+  $spanCH4.textContent = Number.parseFloat(obj.total.ch4.toPrecision(2));
+  $spanN2O.textContent = Number.parseFloat(obj.total.n2o.toPrecision(2));
+  $trLine.appendChild($tdCO2);
+  $trLine.appendChild($tdCO2e);
+  $trLine.appendChild($tdCH4);
+  $trLine.appendChild($tdN2O);
+  returnValue.push($trLine, endValues);
+  return returnValue;
 }

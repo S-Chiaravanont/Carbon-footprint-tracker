@@ -35,6 +35,7 @@ function viewSwap(event) {
   }
   $menuWindow.setAttribute('class', 'dis-none');
   updateHistoryLineGraph();
+  updateHistoryTable();
 }
 
 // form control
@@ -50,12 +51,12 @@ function formHandle(event) {
   formAnswers.food = Number($formElements.elements.food.value);
   formAnswers.entertain = Number($formElements.elements.entertain.value);
   formAnswers.shopping = Number($formElements.elements.shopping.value);
-  $formElements.reset();
   for (var i = 0; i < defaultRangeValue.length; i++) {
     $rangeTextNodes[i].textContent = defaultRangeValue[i];
   }
   var parsedAnswers = parseAnswer(formAnswers);
   getResult(parsedAnswers);
+  $formElements.reset();
 }
 
 // Nav bar window interactive
@@ -235,10 +236,10 @@ function updateHistoryLineGraph() {
 function renderSingleTRLineGraph(obj, startValues) {
   var returnValue = [];
   // Max condition:
-  var CO2Max = 150;
-  var CO2eMax = 94.5;
-  var CH4Max = 0.0188;
-  var N2OMax = 0.00348;
+  var CO2Max = 235;
+  var CO2eMax = 97;
+  var CH4Max = 0.45;
+  var N2OMax = 0.0037;
   var endValues = [
     (Number.parseFloat(obj.total.co2) / CO2Max).toPrecision(2),
     (Number.parseFloat(obj.total.co2e) / CO2eMax).toPrecision(2),
@@ -277,4 +278,89 @@ function renderSingleTRLineGraph(obj, startValues) {
   $trLine.appendChild($tdN2O);
   returnValue.push($trLine, endValues);
   return returnValue;
+}
+
+function updateHistoryTable() {
+  var $hisTableBody = document.querySelector('#history-table-body');
+  $hisTableBody.innerHTML = '';
+  for (var i = 0; i < data.footprints.length; i++) {
+    var newTR = renderSingleTRHisTable(data.footprints[i]);
+    $hisTableBody.appendChild(newTR);
+  }
+}
+
+function renderSingleTRHisTable(obj) {
+  var $tdCO2 = document.createElement('td');
+  var $tdCO2e = document.createElement('td');
+  var $tdCH4 = document.createElement('td');
+  var $tdN2O = document.createElement('td');
+  var $date = document.createElement('td');
+  $date.textContent = obj.date;
+  $tdCO2.textContent = Number.parseFloat(obj.total.co2.toPrecision(2));
+  $tdCO2e.textContent = Number.parseFloat(obj.total.co2e.toPrecision(2));
+  $tdCH4.textContent = Number.parseFloat(obj.total.ch4.toPrecision(2));
+  $tdN2O.textContent = Number.parseFloat(obj.total.n2o.toPrecision(2));
+  var $trLine = document.createElement('tr');
+  $trLine.appendChild($date);
+  $trLine.appendChild($tdCO2);
+  $trLine.appendChild($tdCO2e);
+  $trLine.appendChild($tdCH4);
+  $trLine.appendChild($tdN2O);
+  return $trLine;
+}
+
+var $lineGraphDOM = document.querySelector('#my-chart-line');
+var $lineLegendUL = document.querySelector('#line-chart-legend');
+$lineLegendUL.addEventListener('click', focusLineGraph);
+var idMatchBoolean = {
+  CO2Legend: false,
+  CO2eLegend: false,
+  CH4Legend: false,
+  N2OLegend: false
+};
+var lineColors = {
+  CO2Legend: 'rgba(230, 30, 30, 0.525)',
+  CO2eLegend: 'rgba(180, 230, 30, 0.656)',
+  CH4Legend: 'rgba(30, 230, 223, 0.49)',
+  N2OLegend: 'rgba(120, 30, 230, 0.542)'
+};
+
+function focusLineGraph(event) {
+  if (event.target.nodeName !== 'LI') {
+    return;
+  }
+  if (idMatchBoolean[event.target.getAttribute('id')]) {
+    updateHistoryLineGraph();
+    $lineGraphDOM.style.setProperty('--color-1', lineColors.CO2Legend);
+    idMatchBoolean[event.target.getAttribute('id')] = false;
+    $lineGraphDOM.classList.remove('show-data');
+    $lineGraphDOM.classList.add('hide-data');
+    return;
+  }
+  updateHistoryLineGraph();
+  var idMatchIndex = {
+    CO2Legend: 0,
+    CO2eLegend: 1,
+    CH4Legend: 2,
+    N2OLegend: 3
+  };
+  var $lineGraphTbody = document.querySelector('#my-chart-line > tbody');
+  var $allTrNodes = $lineGraphTbody.querySelectorAll('tr');
+  for (var i = 0; i < $allTrNodes.length; i++) {
+    for (var j = 3; j >= 0; j--) {
+      if (!(j === idMatchIndex[event.target.getAttribute('id')])) {
+        $allTrNodes[i].childNodes[j].remove();
+      }
+    }
+  }
+  idMatchBoolean = {
+    CO2Legend: false,
+    CO2eLegend: false,
+    CH4Legend: false,
+    N2OLegend: false
+  };
+  idMatchBoolean[event.target.getAttribute('id')] = true;
+  $lineGraphDOM.style.setProperty('--color-1', lineColors[event.target.getAttribute('id')]);
+  $lineGraphDOM.classList.remove('hide-data');
+  $lineGraphDOM.classList.add('show-data');
 }

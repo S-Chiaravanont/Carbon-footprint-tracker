@@ -40,7 +40,7 @@
   <main class="wrapper">
     <div class="page-body">
       <!-- Home Page -->
-      <div data-view="home" id="homePage" class="dis-none">
+      <div data-view="home" id="homePage" class="">
         <div class="hero-img-container">
           <div class="text-center">
             <h3 class="carbon-header">WHAT IS A CARBON FOOTPRINT?</h3>
@@ -216,21 +216,21 @@
         </div>
       </div>
       <!-- History Page -->
-      <div data-view="history" id="historyPage" class="">
+      <div data-view="history" id="historyPage" class="dis-none">
         <div class="container">
           <div class="row flex-wrap">
             <div class="column-full">
-              <table class="charts-css line multiple show-heading show-data-axes show-data-on-hover show-primary-axis" id="my-chart-line">
+              <table class="charts-css line multiple show-heading show-data-axes hide-data show-primary-axis" id="my-chart-line">
                 <caption> Footprint History </caption>
                 <tbody>
                 </tbody>
               </table>
               <div class="line-legend-style">
                 <ul class="charts-css legend legend-square legend-inline" id="line-chart-legend">
-                  <li> CO2 </li>
-                  <li> CO2e </li>
-                  <li> CH4 </li>
-                  <li> N2O </li>
+                  <li id="CO2Legend"> CO2 </li>
+                  <li id="CO2eLegend"> CO2e </li>
+                  <li id="CH4Legend"> CH4 </li>
+                  <li id="N2OLegend"> N2O </li>
                 </ul>
               </div>
             </div>

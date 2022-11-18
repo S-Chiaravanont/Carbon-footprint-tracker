@@ -40,7 +40,7 @@
   <main class="wrapper">
     <div class="page-body">
       <!-- Home Page -->
-      <div data-view="home" id="homePage" class="dis-none">
+      <div data-view="home" id="homePage" class="">
         <div class="hero-img-container">
           <div class="text-center">
             <h3 class="carbon-header">WHAT IS A CARBON FOOTPRINT?</h3>
@@ -263,9 +263,9 @@
       </div>
     </footer>
   </main>
-  <div class="overlay" id="overlay-delete">
+  <div class="overlay dis-none" id="overlay-delete">
     <div class="delete-modal text-center">
-      <h3>DELETE THIS ENTRY? <i class="fa-regular fa-circle-xmark cancel-x"></i></h3>
+      <h3>DELETE THIS ENTRY? <i class="fa-regular fa-circle-xmark cancel-x" id="cancel-delete-button"></i></h3>
       <h3>DATE</h3>
       <div>
         <button id="conf-del-button">CONFIRM</button>

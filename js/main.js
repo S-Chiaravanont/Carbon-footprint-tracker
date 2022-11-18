@@ -431,7 +431,7 @@ function historyHandle(event) {
     $rangeTextNodes[3].textContent = data.editing.formAnswers.shopping;
     viewSwap('calculate');
   } else if (event.target.getAttribute('id') === 'delete-button') {
-    $deleteOverlay.className.remove('dis-none');
+    $deleteOverlay.classList.remove('dis-none');
     for (var j = 0; j < data.footprints.length; j++) {
       if (parseInt(event.target.getAttribute('data-id')) === data.footprints[j].entryId) {
         data.delete = j;
@@ -450,4 +450,11 @@ function deleteFootprint() {
   data.delete = null;
   $deleteOverlay.classList.add('dis-none');
   viewSwap('history');
+}
+
+var $cancelDeleteButton = document.querySelector('#cancel-delete-button');
+$cancelDeleteButton.addEventListener('click', cancelDelete);
+function cancelDelete() {
+  data.delete = null;
+  $deleteOverlay.classList.add('dis-none');
 }

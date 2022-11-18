@@ -22,12 +22,16 @@
         <div class="navlink">
           <a href="#" data-view="calculate" id="cal-Nav">Calculate</a>
         </div>
+        <div class="navlink">
+          <a href="#" data-view="history" id="his-Nav">History</a>
+        </div>
         <div id="menu-icon">
           <i class="fa-solid fa-bars"></i>
         </div>
         <div class="dis-none" id="menu-window">
           <div class="menu-window">
             <a href="#" data-view="calculate" class="cal-menu" id="cal-menu">Calculate</a>
+            <a href="#" data-view="history" class="his-menu" id="his-menu">History</a>
           </div>
         </div>
       </div>
@@ -206,6 +210,44 @@
                   <th scope="row"> N2O </th>
                   <td id="resultGraphN2O" style="--size: calc( 4/30 );"> 0.005 </td>
                 </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- History Page -->
+      <div data-view="history" id="historyPage" class="dis-none">
+        <div class="container">
+          <div class="row flex-wrap">
+            <div class="column-full">
+              <table class="charts-css line multiple show-heading show-data-axes hide-data show-primary-axis" id="my-chart-line">
+                <caption> Footprint History </caption>
+                <tbody>
+                </tbody>
+              </table>
+              <div class="line-legend-style">
+                <ul class="charts-css legend legend-square legend-inline" id="line-chart-legend">
+                  <li id="CO2Legend"> CO2 </li>
+                  <li id="CO2eLegend"> CO2e </li>
+                  <li id="CH4Legend"> CH4 </li>
+                  <li id="N2OLegend"> N2O </li>
+                </ul>
+              </div>
+            </div>
+            <div class="column-full">
+              <table class="history-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>CO2</th>
+                    <th>CO2e</th>
+                    <th>CH4</th>
+                    <th>N2O</th>
+                  </tr>
+                </thead>
+                <tbody id="history-table-body">
+
+                </tbody>
               </table>
             </div>
           </div>

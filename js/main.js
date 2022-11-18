@@ -24,6 +24,9 @@ function viewSwap(event) {
         $viewNodes[i].setAttribute('class', 'dis-none');
       }
     }
+    if (event.target.getAttribute('data-view') !== 'calculate') {
+      data.editing = null;
+    }
   } else {
     for (var j = 0; j < $viewNodes.length; j++) {
       if (event === $viewNodes[j].getAttribute('data-view')) {
@@ -31,6 +34,9 @@ function viewSwap(event) {
       } else {
         $viewNodes[j].setAttribute('class', 'dis-none');
       }
+    }
+    if (event !== 'calculate') {
+      data.editing = null;
     }
   }
   $menuWindow.setAttribute('class', 'dis-none');
@@ -55,7 +61,7 @@ function formHandle(event) {
     $rangeTextNodes[i].textContent = defaultRangeValue[i];
   }
   var parsedAnswers = parseAnswer(formAnswers);
-  getResult(parsedAnswers);
+  getResult(parsedAnswers, formAnswers);
   $formElements.reset();
 }
 
@@ -90,7 +96,7 @@ function rangeHandle(event) {
 
 // Http Request
 
-function getResult(answers) {
+function getResult(answers, formAns) {
   var xhr = new XMLHttpRequest();
   var url = 'https://beta3.api.climatiq.io/batch';
   var bearer = 'Bearer 9ZK7P5YBPVMBJ1HVF3K6G99FHDH4';
@@ -101,7 +107,19 @@ function getResult(answers) {
   xhr.addEventListener('load', function () {
     var newFootprint = xhr.response;
     var parsedFootprint = parseAPIData(newFootprint);
-    data.footprints.push(parsedFootprint);
+    parsedFootprint.formAnswers = formAns;
+    if (data.editing) {
+      for (var i = 0; i < data.footprints.length; i++) {
+        if (data.editing.entryId === data.footprints[i].entryId) {
+          data.footprints[i] = parsedFootprint;
+          break;
+        }
+      }
+    } else {
+      parsedFootprint.entryId = data.entryId;
+      data.entryId++;
+      data.footprints.push(parsedFootprint);
+    }
     updateResultPage(parsedFootprint);
     viewSwap('result');
   });
@@ -175,8 +193,6 @@ function parseAPIData(dataAPI) {
       n2o: 0
     }
   };
-  newFootprintObject.entryId = data.entryId;
-  data.entryId++;
   var date = new Date();
   newFootprintObject.date = String(date.getMonth()) + '/' + String(date.getDate()) + '/' + String(date.getFullYear());
   newFootprintObject.data = dataAPI;
@@ -295,17 +311,23 @@ function renderSingleTRHisTable(obj) {
   var $tdCH4 = document.createElement('td');
   var $tdN2O = document.createElement('td');
   var $date = document.createElement('td');
+  var $editTd = document.createElement('td');
+  var $editButton = document.createElement('button');
+  $editButton.textContent = 'edit';
+  $editButton.setAttribute('id', obj.entryId);
   $date.textContent = obj.date;
   $tdCO2.textContent = Number.parseFloat(obj.total.co2.toPrecision(2));
   $tdCO2e.textContent = Number.parseFloat(obj.total.co2e.toPrecision(2));
   $tdCH4.textContent = Number.parseFloat(obj.total.ch4.toPrecision(2));
   $tdN2O.textContent = Number.parseFloat(obj.total.n2o.toPrecision(2));
   var $trLine = document.createElement('tr');
+  $editTd.appendChild($editButton);
   $trLine.appendChild($date);
   $trLine.appendChild($tdCO2);
   $trLine.appendChild($tdCO2e);
   $trLine.appendChild($tdCH4);
   $trLine.appendChild($tdN2O);
+  $trLine.appendChild($editTd);
   return $trLine;
 }
 
@@ -363,4 +385,29 @@ function focusLineGraph(event) {
   $lineGraphDOM.style.setProperty('--color-1', lineColors[event.target.getAttribute('id')]);
   $lineGraphDOM.classList.remove('hide-data');
   $lineGraphDOM.classList.add('show-data');
+}
+
+var $hisTable = document.querySelector('#history-table');
+$hisTable.addEventListener('click', historyHandle);
+
+function historyHandle(event) {
+  if (event.target.tagName !== 'BUTTON') {
+    return;
+  }
+  for (var i = 0; i < data.footprints.length; i++) {
+    if (parseInt(event.target.getAttribute('id')) === data.footprints[i].entryId) {
+      data.editing = data.footprints[i];
+      break;
+    }
+  }
+  $formElements.elements.vehicleType.value = data.editing.formAnswers.vehicle;
+  $formElements.elements.drive.value = data.editing.formAnswers.distance;
+  $formElements.elements.food.value = data.editing.formAnswers.food;
+  $formElements.elements.entertain.value = data.editing.formAnswers.entertain;
+  $formElements.elements.shopping.value = data.editing.formAnswers.shopping;
+  $rangeTextNodes[0].textContent = data.editing.formAnswers.distance;
+  $rangeTextNodes[1].textContent = data.editing.formAnswers.food;
+  $rangeTextNodes[2].textContent = data.editing.formAnswers.entertain;
+  $rangeTextNodes[3].textContent = data.editing.formAnswers.shopping;
+  viewSwap('calculate');
 }

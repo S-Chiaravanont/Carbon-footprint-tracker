@@ -2,7 +2,8 @@
 var data = {
   entryId: 1,
   footprints: [],
-  editing: null
+  editing: null,
+  delete: null
 };
 
 var previousFootprintEntries = localStorage.getItem('javascript-local-storage');

@@ -323,26 +323,30 @@ function renderSingleTRHisTable(obj) {
   var $tdN2O = document.createElement('td');
   var $date = document.createElement('td');
   var $editTd = document.createElement('td');
-  var $editButton = document.createElement('button');
   var $editIcon = document.createElement('i');
-  $editIcon.setAttribute('class', 'fa-regular fa-pen-to-square');
+  var $deleteTd = document.createElement('td');
+  var $deleteIcon = document.createElement('i');
+  $editIcon.setAttribute('class', 'fa-regular fa-pen-to-square edit-button');
   $editIcon.setAttribute('data-id', obj.entryId);
-  $editButton.setAttribute('class', 'edit-button');
-  $editButton.setAttribute('data-id', obj.entryId);
-  $editButton.appendChild($editIcon);
+  $editIcon.setAttribute('id', 'edit-button');
+  $editTd.appendChild($editIcon);
+  $deleteIcon.setAttribute('class', 'fa-solid fa-trash-can delete-button');
+  $deleteIcon.setAttribute('data-id', obj.entryId);
+  $deleteIcon.setAttribute('id', 'delete-button');
+  $deleteTd.appendChild($deleteIcon);
   $date.textContent = obj.date;
   $tdCO2.textContent = Number.parseFloat(obj.total.co2.toPrecision(2));
   $tdCO2e.textContent = Number.parseFloat(obj.total.co2e.toPrecision(2));
   $tdCH4.textContent = Number.parseFloat(obj.total.ch4.toPrecision(2));
   $tdN2O.textContent = Number.parseFloat(obj.total.n2o.toPrecision(2));
   var $trLine = document.createElement('tr');
-  $editTd.appendChild($editButton);
   $trLine.appendChild($date);
   $trLine.appendChild($tdCO2);
   $trLine.appendChild($tdCO2e);
   $trLine.appendChild($tdCH4);
   $trLine.appendChild($tdN2O);
   $trLine.appendChild($editTd);
+  $trLine.appendChild($deleteTd);
   return $trLine;
 }
 
@@ -406,25 +410,44 @@ var $hisTable = document.querySelector('#history-table');
 $hisTable.addEventListener('click', historyHandle);
 
 function historyHandle(event) {
-  if (event.target.tagName !== 'BUTTON') {
-    if (event.target.tagName !== 'I') {
-      return;
+  if (event.target.tagName !== 'I') {
+    return;
+  }
+  if (event.target.getAttribute('id') === 'edit-button') {
+    for (var i = 0; i < data.footprints.length; i++) {
+      if (parseInt(event.target.getAttribute('data-id')) === data.footprints[i].entryId) {
+        data.editing = data.footprints[i];
+        break;
+      }
+    }
+    $formElements.elements.vehicleType.value = data.editing.formAnswers.vehicle;
+    $formElements.elements.drive.value = data.editing.formAnswers.distance;
+    $formElements.elements.food.value = data.editing.formAnswers.food;
+    $formElements.elements.entertain.value = data.editing.formAnswers.entertain;
+    $formElements.elements.shopping.value = data.editing.formAnswers.shopping;
+    $rangeTextNodes[0].textContent = data.editing.formAnswers.distance;
+    $rangeTextNodes[1].textContent = data.editing.formAnswers.food;
+    $rangeTextNodes[2].textContent = data.editing.formAnswers.entertain;
+    $rangeTextNodes[3].textContent = data.editing.formAnswers.shopping;
+    viewSwap('calculate');
+  } else if (event.target.getAttribute('id') === 'delete-button') {
+    $deleteOverlay.className.remove('dis-none');
+    for (var j = 0; j < data.footprints.length; j++) {
+      if (parseInt(event.target.getAttribute('data-id')) === data.footprints[j].entryId) {
+        data.delete = j;
+        break;
+      }
     }
   }
-  for (var i = 0; i < data.footprints.length; i++) {
-    if (parseInt(event.target.getAttribute('data-id')) === data.footprints[i].entryId) {
-      data.editing = data.footprints[i];
-      break;
-    }
-  }
-  $formElements.elements.vehicleType.value = data.editing.formAnswers.vehicle;
-  $formElements.elements.drive.value = data.editing.formAnswers.distance;
-  $formElements.elements.food.value = data.editing.formAnswers.food;
-  $formElements.elements.entertain.value = data.editing.formAnswers.entertain;
-  $formElements.elements.shopping.value = data.editing.formAnswers.shopping;
-  $rangeTextNodes[0].textContent = data.editing.formAnswers.distance;
-  $rangeTextNodes[1].textContent = data.editing.formAnswers.food;
-  $rangeTextNodes[2].textContent = data.editing.formAnswers.entertain;
-  $rangeTextNodes[3].textContent = data.editing.formAnswers.shopping;
-  viewSwap('calculate');
+}
+
+var $deleteOverlay = document.querySelector('#overlay-delete');
+var $confirmDeleteButton = document.querySelector('#conf-del-button');
+$confirmDeleteButton.addEventListener('click', deleteFootprint);
+
+function deleteFootprint() {
+  data.footprints.splice(data.delete, 1);
+  data.delete = null;
+  $deleteOverlay.classList.add('dis-none');
+  viewSwap('history');
 }

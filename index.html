@@ -216,7 +216,7 @@
         </div>
       </div>
       <!-- History Page -->
-      <div data-view="history" id="historyPage" class="">
+      <div data-view="history" id="historyPage" class="dis-none">
         <div class="container">
           <div class="row flex-wrap">
             <div class="column-full">
@@ -244,6 +244,7 @@
                     <th>CH4</th>
                     <th>N2O</th>
                     <th>Edit</th>
+                    <th>Delete</th>
                   </tr>
                 </thead>
                 <tbody id="history-table-body">
@@ -262,6 +263,15 @@
       </div>
     </footer>
   </main>
+  <div class="overlay" id="overlay-delete">
+    <div class="delete-modal text-center">
+      <h3>DELETE THIS ENTRY? <i class="fa-regular fa-circle-xmark cancel-x"></i></h3>
+      <h3>DATE</h3>
+      <div>
+        <button id="conf-del-button">CONFIRM</button>
+      </div>
+    </div>
+  </div>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>

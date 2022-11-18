@@ -26,6 +26,7 @@ function viewSwap(event) {
     }
     if (event.target.getAttribute('data-view') !== 'calculate') {
       data.editing = null;
+      clearForm();
     }
   } else {
     for (var j = 0; j < $viewNodes.length; j++) {
@@ -37,6 +38,7 @@ function viewSwap(event) {
     }
     if (event !== 'calculate') {
       data.editing = null;
+      clearForm();
     }
   }
   $menuWindow.setAttribute('class', 'dis-none');
@@ -57,12 +59,16 @@ function formHandle(event) {
   formAnswers.food = Number($formElements.elements.food.value);
   formAnswers.entertain = Number($formElements.elements.entertain.value);
   formAnswers.shopping = Number($formElements.elements.shopping.value);
+  var parsedAnswers = parseAnswer(formAnswers);
+  getResult(parsedAnswers, formAnswers);
+  clearForm();
+}
+
+function clearForm() {
+  $formElements.reset();
   for (var i = 0; i < defaultRangeValue.length; i++) {
     $rangeTextNodes[i].textContent = defaultRangeValue[i];
   }
-  var parsedAnswers = parseAnswer(formAnswers);
-  getResult(parsedAnswers, formAnswers);
-  $formElements.reset();
 }
 
 // Nav bar window interactive
@@ -109,6 +115,7 @@ function getResult(answers, formAns) {
     var parsedFootprint = parseAPIData(newFootprint);
     parsedFootprint.formAnswers = formAns;
     if (data.editing) {
+      parsedFootprint.entryId = data.editing.entryId;
       for (var i = 0; i < data.footprints.length; i++) {
         if (data.editing.entryId === data.footprints[i].entryId) {
           data.footprints[i] = parsedFootprint;
@@ -236,6 +243,10 @@ function updateResultPage(obj) {
 }
 
 function updateHistoryLineGraph() {
+  if ($lineGraphDOM.className.includes('show-data')) {
+    $lineGraphDOM.classList.remove('show-data');
+    $lineGraphDOM.classList.add('hide-data');
+  }
   var $lineGraph = document.querySelector('#my-chart-line > tbody');
   $lineGraph.replaceChildren();
   var startValue = [0.0, 0.0, 0.0, 0.0];
@@ -313,8 +324,12 @@ function renderSingleTRHisTable(obj) {
   var $date = document.createElement('td');
   var $editTd = document.createElement('td');
   var $editButton = document.createElement('button');
-  $editButton.textContent = 'edit';
-  $editButton.setAttribute('id', obj.entryId);
+  var $editIcon = document.createElement('i');
+  $editIcon.setAttribute('class', 'fa-regular fa-pen-to-square');
+  $editIcon.setAttribute('data-id', obj.entryId);
+  $editButton.setAttribute('class', 'edit-button');
+  $editButton.setAttribute('data-id', obj.entryId);
+  $editButton.appendChild($editIcon);
   $date.textContent = obj.date;
   $tdCO2.textContent = Number.parseFloat(obj.total.co2.toPrecision(2));
   $tdCO2e.textContent = Number.parseFloat(obj.total.co2e.toPrecision(2));
@@ -392,10 +407,12 @@ $hisTable.addEventListener('click', historyHandle);
 
 function historyHandle(event) {
   if (event.target.tagName !== 'BUTTON') {
-    return;
+    if (event.target.tagName !== 'I') {
+      return;
+    }
   }
   for (var i = 0; i < data.footprints.length; i++) {
-    if (parseInt(event.target.getAttribute('id')) === data.footprints[i].entryId) {
+    if (parseInt(event.target.getAttribute('data-id')) === data.footprints[i].entryId) {
       data.editing = data.footprints[i];
       break;
     }

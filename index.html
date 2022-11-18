@@ -40,7 +40,7 @@
   <main class="wrapper">
     <div class="page-body">
       <!-- Home Page -->
-      <div data-view="home" id="homePage" class="">
+      <div data-view="home" id="homePage" class="dis-none">
         <div class="hero-img-container">
           <div class="text-center">
             <h3 class="carbon-header">WHAT IS A CARBON FOOTPRINT?</h3>
@@ -216,7 +216,7 @@
         </div>
       </div>
       <!-- History Page -->
-      <div data-view="history" id="historyPage" class="dis-none">
+      <div data-view="history" id="historyPage" class="">
         <div class="container">
           <div class="row flex-wrap">
             <div class="column-full">
@@ -235,7 +235,7 @@
               </div>
             </div>
             <div class="column-full">
-              <table class="history-table">
+              <table class="history-table" id="history-table">
                 <thead>
                   <tr>
                     <th>Date</th>
@@ -243,6 +243,7 @@
                     <th>CO2e</th>
                     <th>CH4</th>
                     <th>N2O</th>
+                    <th>Edit</th>
                   </tr>
                 </thead>
                 <tbody id="history-table-body">

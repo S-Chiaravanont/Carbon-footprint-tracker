@@ -332,3 +332,20 @@ ul > li:hover {
 #line-chart-legend > li:nth-child(4)::before {
   --color-4: rgba(120, 30, 230, 0.542);
 }
+
+.edit-button {
+  border: none;
+  width: 50px;
+  height: 25px;
+  border-radius: 4px;
+  background: none;
+}
+
+.edit-button:hover {
+  cursor: pointer;
+  border: none;
+  width: 50px;
+  height: 25px;
+  border-radius: 4px;
+  background-color: rgba(52, 58, 64, 0.514);
+}

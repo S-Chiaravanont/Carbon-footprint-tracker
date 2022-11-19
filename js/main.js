@@ -61,7 +61,6 @@ function formHandle(event) {
   formAnswers.shopping = Number($formElements.elements.shopping.value);
   var parsedAnswers = parseAnswer(formAnswers);
   getResult(parsedAnswers, formAnswers);
-  clearForm();
 }
 
 function clearForm() {
@@ -128,6 +127,7 @@ function getResult(answers, formAns) {
       data.footprints.push(parsedFootprint);
     }
     updateResultPage(parsedFootprint);
+    clearForm();
     viewSwap('result');
   });
   xhr.send(formData);
@@ -432,9 +432,11 @@ function historyHandle(event) {
     viewSwap('calculate');
   } else if (event.target.getAttribute('id') === 'delete-button') {
     $deleteOverlay.classList.remove('dis-none');
+    var deleteModalDate = document.querySelector('#delete-modal-date');
     for (var j = 0; j < data.footprints.length; j++) {
       if (parseInt(event.target.getAttribute('data-id')) === data.footprints[j].entryId) {
         data.delete = j;
+        deleteModalDate.textContent = data.footprints[j].date;
         break;
       }
     }
@@ -454,6 +456,7 @@ function deleteFootprint() {
 
 var $cancelDeleteButton = document.querySelector('#cancel-delete-button');
 $cancelDeleteButton.addEventListener('click', cancelDelete);
+
 function cancelDelete() {
   data.delete = null;
   $deleteOverlay.classList.add('dis-none');

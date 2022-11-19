@@ -40,6 +40,7 @@ h4 > a {
   max-width: 800px;
   margin: 0 auto;
   position: relative;
+  padding: 0 10px;
 }
 
 .navbar > a,
@@ -218,20 +219,19 @@ body {
 th {
   position: sticky;
   top: 0;
-  background: #fff;
-  vertical-align: bottom;
   background-color: rgb(52, 58, 64);
   color: white;
 }
 
-table {
-  /* width: 100%;
-  max-width: 500px; */
-  margin: 0 auto;
-  overflow: auto;
-  border-spacing: 0;
+.overflow-x {
+  overflow-x: scroll;
+}
 
-  /* display: block; */
+table {
+  width: 100%;
+  margin: 0 auto;
+  overflow-x: scroll;
+  border-spacing: 0;
 }
 
 tbody {

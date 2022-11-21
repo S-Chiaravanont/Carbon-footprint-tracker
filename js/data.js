@@ -18,3 +18,9 @@ function beforeUnloadHandle(event) {
   var dataJSON = JSON.stringify(data);
   localStorage.setItem('javascript-local-storage', dataJSON);
 }
+
+window.addEventListener('pagehide', function () {
+  data.editing = null;
+  var dataJSON = JSON.stringify(data);
+  localStorage.setItem('javascript-local-storage', dataJSON);
+});

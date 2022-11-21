@@ -1,4 +1,3 @@
-// View Swap
 var $mainBody = document.querySelector('main');
 var $viewNodes = $mainBody.querySelectorAll('[data-view]:not(button)');
 var $homeNav = document.querySelector('#home-Nav');
@@ -46,7 +45,6 @@ function viewSwap(event) {
   updateHistoryTable();
 }
 
-// form control
 var $formElements = document.querySelector('form');
 $formElements.addEventListener('submit', formHandle);
 var defaultRangeValue = ['50', '50', '6', '150'];
@@ -70,7 +68,6 @@ function clearForm() {
   }
 }
 
-// Nav bar window interactive
 var $menuIcon = document.querySelector('#menu-icon');
 var $menuWindow = document.querySelector('#menu-window');
 $menuIcon.addEventListener('mouseenter', menuHandle);
@@ -82,7 +79,6 @@ function menuHandle() {
   }, 3000);
 }
 
-// Form range interactive
 var $rangeTextNodes = document.querySelectorAll('[data-range]:not(input)');
 var $rangeNodes = document.querySelector('#calculatePage');
 $rangeNodes.addEventListener('change', rangeHandle);
@@ -98,8 +94,6 @@ function rangeHandle(event) {
     }
   }
 }
-
-// Http Request
 
 function getResult(answers, formAns) {
   var xhr = new XMLHttpRequest();
@@ -182,12 +176,6 @@ function parseAnswer(answers) {
   return JSON.stringify(climatiqObj);
 }
 
-// Parsing data
-// Access CO2e -> Object[index].constituent_gases.co2e_total
-// Access CO2  -> Object[index].constituent_gases.co2
-// Access CH4  -> Object[index].constituent_gases.ch4
-// Access N2O  -> Object[index].constituent_gases.n2o
-
 function parseAPIData(dataAPI) {
   var newFootprintObject = {
     date: null,
@@ -262,7 +250,6 @@ function updateHistoryLineGraph() {
 
 function renderSingleTRLineGraph(obj, startValues) {
   var returnValue = [];
-  // Max condition:
   var CO2Max = 235;
   var CO2eMax = 97;
   var CH4Max = 0.45;
@@ -273,7 +260,6 @@ function renderSingleTRLineGraph(obj, startValues) {
     (Number.parseFloat(obj.total.ch4) / CH4Max).toPrecision(2),
     (Number.parseFloat(obj.total.n2o) / N2OMax).toPrecision(2)
   ];
-  // style="--start: 0.0; --size: 0.4"
   var $tdCO2 = document.createElement('td');
   $tdCO2.setAttribute('style', '--start: ' + String(startValues[0]) + '; --size: ' + String(endValues[0]));
   var $spanCO2 = document.createElement('span');

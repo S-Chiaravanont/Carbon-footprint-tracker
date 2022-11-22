@@ -1,5 +1,5 @@
 .container {
-  max-width: 800px;
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -12,7 +12,7 @@
 }
 
 .column-half {
-  flex-basis: 50%;
+  flex-basis: 100%;
 }
 
 .flex-wrap {
@@ -26,19 +26,25 @@
 }
 
 .navlink {
-  display: inline;
+  display: none;
 }
 
 .dis-none {
   display: none;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (min-width: 768px) {
   .column-half {
-    flex-basis: 100%;
+    flex-basis: 50%;
   }
 
   .navlink {
-    display: none;
+    display: inline;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .container {
+    max-width: 1200px;
   }
 }

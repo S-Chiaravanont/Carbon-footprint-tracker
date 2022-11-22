@@ -6,6 +6,7 @@ var $calButton = document.querySelector('#calculate-butt');
 var $calMenu = document.querySelector('#cal-menu');
 var $hisNav = document.querySelector('#his-Nav');
 var $hisMenu = document.querySelector('#his-menu');
+var $htmlDOM = document.querySelector('html');
 
 $homeNav.addEventListener('click', viewSwap);
 $calNav.addEventListener('click', viewSwap);
@@ -40,6 +41,7 @@ function viewSwap(event) {
       clearForm();
     }
   }
+  $htmlDOM.style.cursor = '';
   $menuWindow.setAttribute('class', 'dis-none');
   updateHistoryLineGraph();
   updateHistoryTable();
@@ -51,6 +53,7 @@ var defaultRangeValue = ['50', '50', '6', '150'];
 
 function formHandle(event) {
   event.preventDefault();
+  $htmlDOM.style.cursor = 'wait';
   var formAnswers = {};
   formAnswers.vehicle = $formElements.elements.vehicleType.value;
   formAnswers.distance = Number($formElements.elements.drive.value);
@@ -97,6 +100,7 @@ function rangeHandle(event) {
 
 function getResult(answers, formAns) {
   var xhr = new XMLHttpRequest();
+  var xhrStatus = null;
   var url = 'https://beta3.api.climatiq.io/batch';
   var bearer = 'Bearer 9ZK7P5YBPVMBJ1HVF3K6G99FHDH4';
   var formData = answers;
@@ -104,6 +108,11 @@ function getResult(answers, formAns) {
   xhr.setRequestHeader('Authorization', bearer);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
+    xhrStatus = xhr.status;
+    if (xhrStatus !== 200) {
+      viewSwap('wait');
+      return;
+    }
     var newFootprint = xhr.response;
     var parsedFootprint = parseAPIData(newFootprint);
     parsedFootprint.formAnswers = formAns;

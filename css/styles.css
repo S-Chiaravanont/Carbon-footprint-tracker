@@ -37,7 +37,6 @@ h4 > a {
 
 .navbar,
 .footer {
-  max-width: 800px;
   margin: 0 auto;
   position: relative;
   padding: 0 10px;
@@ -52,7 +51,7 @@ h4 > a {
 
 #menu-icon {
   position: absolute;
-  right: 0;
+  right: 1%;
   top: 50%;
   transform: translate(0, -50%);
   color: white;
@@ -382,4 +381,8 @@ ul > li:hover {
 
 #conf-del-button:hover {
   background-color: rgba(52, 58, 64, 0.741);
+}
+
+.top-padding-50 {
+  padding-top: 50px;
 }

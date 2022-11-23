@@ -74,6 +74,7 @@ function clearForm() {
 var $menuIcon = document.querySelector('#menu-icon');
 var $menuWindow = document.querySelector('#menu-window');
 $menuIcon.addEventListener('mouseenter', menuHandle);
+$menuIcon.addEventListener('click', menuHandle);
 
 function menuHandle() {
   $menuWindow.setAttribute('class', '');
